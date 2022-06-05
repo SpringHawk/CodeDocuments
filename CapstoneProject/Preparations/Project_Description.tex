@@ -3,50 +3,91 @@
 \usepackage[utf8]{inputenc}
 \pagenumbering{gobble}
 
-\title{Capstone Project - Short Project Description}
+\title{Capstone Project Exposé - Draft 2}
 \author{Martin Zaubitzer }
-\date{March 2022}
+\date{\today}
 
 \begin{document}
 
 \maketitle
 
+\section*{Meta-Info}
+\begin{itemize}
+    \item Supervisor: Ulrich von Zadow
+    \item Preliminary Capstone Project hand-in deadline: end November 2022
+\end{itemize}
+
 \section*{Introduction}
-Many things small and big things are currently developed, trying to combat the climate crisis. One of these things, in regards to long distance cargo transportation, could be the shift from trucks to rail transportation. To insure safety and financial feasibility for the companies in this industry, a fleet of reliable, well maintained and cheap locomotives and freight carts is required. While most locomotives are fairly new and technologically advanced, most freight carts are very old and without any electrical sensors. This makes maintenance complicated and requires a lot of time, specially trained personnel and equipment. \\
+The climate crisis is a topic often discussed in todays politics. Within these discussions the CO\textsubscript{2} emissions from cars and cargo transportation are sometimes the focus. A very efficient and enviromental friendly way to transport cargo over long distances, is transportation via rail, which is now getting more attention as a possible replacement for long-haul trucks. To insure safety and financial feasibility for the companies in this industry, a fleet of reliable, well maintained locomotives and freight waggons is required. While most locomotives are fairly new and technologically advanced, most freight carts used in Germany are old and without any build-in electrical sensors. Therefore maintanace is complicated and requires specially trained professionals with very specific equipment. While specialized equipement is being develop regularly, finding these professionals or other workers to train gets harder ervery day.
 
-\noindent To combat this, the company I am currently with has decided to rebuild this maintenance process from the ground up and create a device that can automatically test and diagnose freight carts. Multiple prototypes have been created and now we think the device is ready for a final iteration. I will be developing this final iteration of freight cart maintenance device, in a solo project, from a software perspective. It will also include the development of an companion application allowing for remote control, data aggregation and report creation. 
+\section*{Goals}
+To combat this, we have decided to rebuild this maintenance process from the ground up and create a device (and toolchain) that can automatically test and diagnose freight waggons. The goal is that this process can be used by every worker in the field, without needing special training.
 
-\section*{Project Outcome}
-The outcome of this project will be a pneumatic device that can measure and adjust the pressure from a specific freight cart. It can also display the results directly to a user. Besides that, it will also be able to run a number of predefined test. Along-side it will have an Android Companion App, able to remote control the device, run more sophisticated automated and manual tests. The App will also be able to take result data from the device, generate a PDF report and make the data available to an company internal API.
-\\
-\noindent The device and its App should able to run a predefined list of automated and manual tests at the end of this project, for it to be successful. Should it turn out that data sharing to internal or external APIs is not wanted or needed this project would still be a success.
+\noindent
+Multiple prototypes have already been created for internal testing. Now we are ready to develop a final prototype of the automated freight waggon testing device, that can be presented to the audience of Innotans 2022.
+
+\noindent
+My goal at the end of this project is, to have a presentable prototype of the device, that can automatically and manually test the freight waggon and generate a digital report. This includes a demo Web Interface, simulating the office enviroment where work requests are submitted, an Android Application to remotely control the device and genereate the report and the device with all the sensors and manual controls.
 
 \newpage
 
-\section*{Project Plan}
-To arrive at the desired outcome of this Capstone project, it will implement the following steps:
+\section*{Project Outcome}
+The project outcome will be split into three different artifacts:
 \begin{description}
-    \item[1.Evaluation of current progress:] \hfill \\ 
+    \item[1. Web (Admin) Interface:] \hfill \\
+        This will be a front-end Web Interface where work requests can be submitted and workers dispatched. In the back-end it will hold an example database of known freight waggons, users and work results.
+        It will be built using C\# (Blazor/.NET) or golang.
+    \item[2. Android Application:] \hfill \\
+        This will be the main part of the project, a full Android application that can fetch incomming work requests for a specific worker. It will include Ble to communicate with the testing device and controll it. In the end, the App will send the test result back to the back-end and create a PDF work result that can be directly send to the customer.
+        It will be built using Kotlin and Java.
+    \item[3. Testing Device:] \hfill \\
+        This will be a microcontroller/Arduino/Controllino based device with Ble capabilities with sensors and valves to measure and control the freight waggon. These waggons work with air pressure, so the device will meassure existing pressure and fill/empty the waggon using an external compressor. It will also have a display and physical buttons to manually control all actions directly on the device without the need of the Android Application.
+        It will be built using Arduino via platformIO.
+\end{description}
+\noindent
+I would consider this project successfull when all three artifacts can be demonstrated during a live demo.
+
+\section*{Project Plan}
+To arrive at the final outcome of this Capstone project, it will implement the following steps:
+\begin{description}
+    \item[1. Evaluation the current progress:] \hfill \\
         The progress made so far will be deeply analyzed to find where to improve the next device/app generation. In this step it will also be determined which of the multiple existing guidelines to follow and how.
-    \item[2.Field Tests and comparisons:] \hfill \\ 
-        With the current prototype evaluated it is time to test efficiency and reliability. In this step it is also time to compare the automated test in their efficiency compared to traditional testing. 
-    \item[3. Improvement analysis and Device and App Creation:] \hfill \\ 
-        When all this data is collected it is time to start analyzing where a new iteration of device/app could improve upon the existing one. A new device will than be build from the ground up to implement the changes and new features and dial in the latest changes. The app will also be reworked to accommodate the device changes and bring more value to the overall concept.  
-    \item[4. Field Tests and analysis:] \hfill \\ 
-        After all changes are implemented, the new device will be tested against the previous one and the traditional way of testing. This will also include user tests and more feedback that will greatly help the project for the future.
+    \item[2. Clean-up and Rework of the Device Code:] \hfill \\
+        The existing code for the device will be reworked and tested.
+    \item[3. Clean-up and Refactor of the Android Application:] \hfill \\
+        The existing application will undergo massive restructering and testing.
+    \item[4. New feature implementation:] \hfill \\
+        After all parts are cleaned and tested the new features (determined by Step 1) will be implemented.
+    \item[5. Develop the Web Interface for demonstration:]
+        The back-end databases and Admin/Web front-end will be built so simulate the full system.
 \end{description}
 
 \section*{Organizational Setup}
-As stated this project is a work project, where I am leading the software development of the device and the Android Application. The team working at this in the company consists of two other people, responsible for device design, pneumatic and electronics. I will be working alone on the software parts, but try to peek into other parts if necessary. If possible, I will not do this project in the CODE semester framework.
+This project will be implemented as a solo CODE semester project. I will develop and design all three artifacts alone. To get done until the demonstration some example data will be fictional and a co-worker will design and assemble the device from a pneumatic/electronics perspective.
 
 \section*{Roadmap}
 \begin{description}
-    \item[Now - End of April:] \hfill \\
-    Gather all requirements and make the project official.  
-    \item[April - June:]\hfill \\
-    Finish all testing and evaluation on the old device and start development of the new under this project.
-    \item[June-August:]\hfill \\
-    Finish the project development and start testing the new device, including user tests.
+    \item[Now - End of June:] \hfill \\
+        Submission of this Project.
+        \item[June - September:]\hfill \\
+        Current State evaluation and development of new features.
+    \item[20.09.2022:] \hfill \\
+        Customer demonstration at Innotrans 2022.
+        \item[September-November:]\hfill \\
+        Finish the project development and start development of the web/back-end elemnts. Final testing and clean-up.
+    \item[End of November]
+        Ready for complete project demonstration.
 \end{description}
+
+\section*{Proposed Assessment Modalities}
+The final examination will be based on a live demonstration of the project and/or an oral examination.
+
+\noindent
+The live demo will show the project from a users perspective and therefore will focus on:
+\begin{itemize}
+    \item ease of use for an untrained user
+    \item the full process from job generation in the Web Interface to the result generation in the Android App (maybe as pre-recorded video)
+    \item automated/remote control via the App and manual control directly on the device
+\end{itemize}
 
 \end{document}
